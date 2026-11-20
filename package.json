@@ -1,0 +1,38 @@
+{
+  "name": "infinity-men2-law-office",
+  "version": "1.2.0",
+  "private": true,
+  "type": "module",
+  "description": "Infinity MEN2 Law Office - Web, PWA and Android app",
+  "scripts": {
+    "start": "npm run build:bridge && http-server . -a 127.0.0.1 -p 4173 -c-1",
+    "dev": "npm start",
+    "build:bridge": "esbuild native-features.js --bundle --platform=browser --target=es2020 --format=iife --outfile=native-features.bundle.js",
+    "build": "npm run build:bridge && node build.cjs",
+    "android:add": "npm run build && cap add android && npm run assets:android && node build.cjs && cap sync android",
+    "android:sync": "npm run build && npm run assets:android && node build.cjs && cap sync android",
+    "android:open": "cap open android",
+    "assets:android": "capacitor-assets generate --android",
+    "push:start": "node push-server.cjs",
+    "check": "node --check app.js && node --check pwa.js && node --check push-server.cjs && node --check build.cjs"
+  },
+  "dependencies": {
+    "@capacitor/android": "^8.6.2",
+    "@capacitor/camera": "^8.2.6",
+    "@capacitor/core": "^8.6.2",
+    "@capacitor/local-notifications": "^8.3.1",
+    "@capacitor/push-notifications": "^8.1.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "firebase-admin": "^13.5.0",
+    "web-push": "^3.6.7"
+  },
+  "devDependencies": {
+    "@capacitor/assets": "^4.0.0",
+    "@capacitor/cli": "^8.6.2",
+    "esbuild": "^0.25.0",
+    "http-server": "^14.1.1"
+  },
+  "engines": { "node": ">=22.0.0" }
+}

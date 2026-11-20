@@ -1,0 +1,10 @@
+{
+  "appId": "com.infinitymen2.lawoffice",
+  "appName": "Infinity MEN2",
+  "webDir": "www",
+  "bundledWebRuntime": false,
+  "server": { "androidScheme": "https" },
+  "plugins": {
+    "LocalNotifications": { "smallIcon": "ic_stat_infinity", "iconColor": "#D4AF37" }
+  }
+}
